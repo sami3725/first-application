@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TarkariWala.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-success" type="button" value="Add New"><i class="fas fa-plus"></i>Add New</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <table class="table table-striped" id="productstable" border="1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Image)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductSubCategory.ProductSubCategoryName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Supplier.SuppliersName)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Discount)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            <img src="@item.Image" style="height:80px; width:80px;" />
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductSubCategory.ProductSubCategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplier.SuppliersName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount)
+                        </td>
+                        <td>
+                            <i class="fas fa-edit"></i>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductID })
+
+                        </td>
+
+                        <td>
+                            <i class="fas fa-trash-alt"></i>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>                   
+                </tfoot>
+
+            </table>
+        </div>
+    </div>
+ </div>
+
+<link href="~/Content/datatable jq/jquery.dataTables.min.css" rel="stylesheet" />
+        
+        @section scripts{
+            <script src="~/Content/datatable jq/jquery.dataTables.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#productstable').DataTable({
+                    });
+                });
+            </script>
+        }

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<TarkariWala.Models.ProductSubCategory>
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+
+<h4>ProductSubCategoryDetails</h4>
+<div>
+
+    <hr />
+    <table class="table" id="subcategory" border="1">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductSubCategoryName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Rate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Available)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DisplayOrder)
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                  <img src="@item.Image" style="height:80px; width:80px;"/>
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductSubCategoryName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayOrder)
+                </td>
+
+               
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductSubCategoryID }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+</div>
+
+<link href="~/Content/datatable jq/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="~/Content/datatable jq/jquery.dataTables.min.js"></script>
+    <script>
+            $(document).ready(function () {
+                $('#subcategory').DataTable({
+
+                });
+            });
+    </script>
+}
+
+
